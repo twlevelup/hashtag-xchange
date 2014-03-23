@@ -1,0 +1,54 @@
+{
+  "name": "hashtag-xchange",
+  "preferGlobal": false,
+  "version": "0.0.1",
+  "author": "ThoughtWorks LevelUp Melbourne <levelup-melbourne@thoughtworks.com>",
+  "description": "hashtag exchange",
+  "readme": "README.md",
+  "contributors": [
+    {
+      "name": "Joe Sustaric",
+      "email": "jsustari@thoughtworks.com"
+    },
+    {
+      "name": "Alex Ong",
+      "email": "aong@thoughtworks.com"
+    },
+    {
+      "name": "Kai Ramünke",
+      "email": "kramuenk@thoughtworks.com"
+    }
+  ],
+  "bin": {
+    "hashtag-xchange": "./bin/hashtag-xchange"
+  },
+  "scripts": {
+    "start": "node ./bin/hashtag-xchange",
+    "test": "mocha",
+    "predeploy": "echo This will be run before deploying the app",
+    "postdeploy": "echo This will be run after deploying the app"
+  },
+  "main": "./lib/hashtag-xchange",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twlevelup/hashtag-xchange.git"
+  },
+  "keywords": [
+    "hashtag",
+    "exchange",
+    "trading"
+  ],
+  "dependencies": {
+    "restify": "^2.6.3"
+  },
+  "devDependencies": {
+    "mocha": "^1.18.2",
+    "chai": "^1.9.1",
+    "grunt": "^0.4.4"
+  },
+  "bundledDependencies": [ "restify" ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10"
+  }
+}
