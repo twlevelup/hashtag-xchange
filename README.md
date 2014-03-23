@@ -13,4 +13,4 @@ $ npm install
 $ grunt test
 
 ## Run locally
-$ grunt server
+$ bin/hashtag-xchange

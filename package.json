@@ -23,7 +23,7 @@
     "hashtag-xchange": "./bin/hashtag-xchange"
   },
   "scripts": {
-    "start": "grunt server",
+    "start": "./bin/hashtag-xchange",
     "test": "grunt test",
     "predeploy": "echo This will be run before deploying the app",
     "postdeploy": "echo This will be run after deploying the app"
