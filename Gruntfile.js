@@ -1,5 +1,7 @@
 "use strict";
 module.exports = function(grunt) {
+  var pkg = grunt.file.readJSON('package.json');
+
   grunt.initConfig({
     watch: {
       test: {
@@ -18,10 +20,7 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      options: {
-        node: true,
-        expr: true,
-      },
+      options: pkg.jshintConfig,
       all: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js']
     }
   });

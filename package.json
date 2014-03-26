@@ -38,6 +38,10 @@
     "exchange",
     "trading"
   ],
+  "jshintConfig": {
+    "node": true,
+    "expr": true
+  },
   "dependencies": {
     "restify": "^2.6.3"
   },
