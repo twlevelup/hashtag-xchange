@@ -24,14 +24,14 @@ describe("SSL Redirector", function() {
     res = {
       header: function() {},
       send: function() {}
-    }
+    };
 
     headerSpy = sinon.spy(res, "header");
     sendSpy = sinon.spy(res, "send");
     nextSpy = sinon.spy();
     return done();
   });
-  
+
   describe("HTTP redirection", function() {
     it("should redirect non-secure request to the HTTPS url", function () {
       exports.forceSSLRedirect(req, res, nextSpy);
@@ -48,7 +48,7 @@ describe("SSL Redirector", function() {
 
       headerSpy.called.should.be.false;
       sendSpy.called.should.be.false;
-      
+
       nextSpy.calledOnce.should.be.true;
     });
 

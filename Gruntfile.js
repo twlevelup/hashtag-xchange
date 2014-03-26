@@ -16,10 +16,18 @@ module.exports = function(grunt) {
           ui: 'bdd',
         }
       }
+    },
+    jshint: {
+      options: {
+        node: true,
+        expr: true,
+      },
+      all: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js']
     }
   });
   grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-simple-mocha");
   grunt.registerTask("default", ["watch"]);
-  return grunt.registerTask("test", ["simplemocha"]);
+  return grunt.registerTask("test", ["jshint","simplemocha"]);
 };
