@@ -1,6 +1,6 @@
 require('./test_helper.js');
 
-var hashtag_xchange = require('../lib/hashtag-xchange.js');
+var hashtag_xchange = require('../lib/hashtag_xchange.js');
 
 describe("routing behaviour", function() {
   beforeEach(function(done) {

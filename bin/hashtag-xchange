@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-require('../lib/hashtag-xchange.js').hashtagXchange();
+require('../lib/hashtag_xchange.js').hashtagXchange();
