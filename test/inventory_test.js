@@ -1,12 +1,6 @@
-var chai, expect, inventory, should, sinon, sinonChai, exports;
+require('./test_helper.js');
 
-chai = require('chai');
-expect = chai.expect;
-should = chai.should();
-sinon = require('sinon');
-sinonChai = require('sinon-chai');
-chai.use(sinonChai);
-
+var inventory, exports;
 exports = require('../lib/inventory.js');
 
 describe("Inventory", function() {
