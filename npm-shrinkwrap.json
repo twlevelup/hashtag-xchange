@@ -139,6 +139,10 @@
           "resolved": "https://registry.npmjs.org/dtrace-provider/-/dtrace-provider-0.2.8.tgz"
         }
       }
+    },
+    "underscore": {
+      "version": "1.6.0",
+      "from": "underscore@"
     }
   }
 }
