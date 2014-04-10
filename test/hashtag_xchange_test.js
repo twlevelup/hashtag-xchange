@@ -1,28 +1,36 @@
 require('./test_helper.js');
+var request = require('supertest');
 var restify = require('restify');
 
 process.env.PORT = 8081;
-require('../lib/server').createServer();
-var client = restify.createJsonClient({
-  url: 'http://localhost:8081'
-});
+var server = require('../lib/server').createServer();
 
 describe("routing behaviour", function() {
   it("should redirect to SSL in production", function() {
   });
 
-  it("should delegate bid requests", function(done) {
-    client.post('/bids', {tag: "swag", price: "1.00"}, function (err, req, res, obj) {
-      expect(res.statusCode).to.equal(201);
-      done();
+  describe("bids", function () {
+    it("should match index", function(done) {
+      request(server)
+        .get('/bids')
+        .expect('Content-Type', /json/)
+        .expect(200, done);
+    });
+    
+    it("should match creation", function(done) {
+      request(server)
+        .post('/bids')
+        .send('{tag: "yolo", price: "10.00", units: 1}')
+        .expect('Content-Type', /json/)
+        .expect(201, done);
     });
   });
+  
+  describe("asks", function() {
 
-  it("should delegate ask requests", function() {
+  });
 
-  }); 
- 
-  it("should delegate trade requests", function() {
+  describe("trades", function() {
 
   });
 });
