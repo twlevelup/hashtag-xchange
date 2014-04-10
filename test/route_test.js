@@ -1,8 +1,9 @@
 require('./test_helper.js');
-var request = require('supertest');
-var restify = require('restify');
 
 process.env.PORT = 8081;
+
+var request = require('supertest');
+var restify = require('restify');
 var server = require('../lib/server').createServer();
 
 describe("routing behaviour", function() {
