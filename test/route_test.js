@@ -1,11 +1,5 @@
 require('./test_helper.js');
 
-process.env.PORT = 8081;
-
-var request = require('supertest');
-var restify = require('restify');
-var server = require('../lib/server').createServer();
-
 describe("routing behaviour", function() {
   it("should redirect to SSL in production", function() {
   });
