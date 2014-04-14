@@ -3,13 +3,13 @@ var _ = require('underscore');
 
 var post = function(path, body) {
   return request(server)
-          .post(path)
-          .send(body);
+  .post(path)
+  .send(body);
 };
 
 var get = function(path, body) {
   return request(server)
-          .get(path);
+  .get(path);
 };
 
 var postAndAssert = function(path, body, callback) {
@@ -44,15 +44,15 @@ describe("bids", function () {
         expect(bid.units).to.equal(1);
         done();
       };
- 
+
       var assertBidCreated = function(err, res) {
         expect(res.body.id).to.be.a('number');
         getAndAssert('/bids', assertBidExists);
       };
- 
+
       postAndAssert('/bids',
-           {action: 'bid', tag: hashTag, price: 10.01, units: 1},
-           assertBidCreated);
+                    {action: 'bid', tag: hashTag, price: 10.01, units: 1},
+                    assertBidCreated);
     });
   });
 
@@ -60,3 +60,39 @@ describe("bids", function () {
   });
 });
 
+describe("asks", function () {
+  describe("when creating asks", function() {
+    it("should produce an id", function(done) {
+      request(server)
+      .post('/asks')
+      .send({action: 'ask', tag: "yolo", price: 12.23, units: 1})
+      .end(function(err, res) {
+        expect(res.body.id).to.be.a('number');
+        done();
+      });
+    });
+
+    it("should create an ask", function(done) {
+      var hashTag = "test-" + Date.now();
+
+      var assertAskExists = function(err, res) {
+        var bid = _.findWhere(res.body, {tag: hashTag});
+
+        expect(bid.id).to.be.a('number');
+        expect(bid.action).to.equal('ask');
+        expect(bid.price).to.equal(33.92);
+        expect(bid.units).to.equal(1);
+        done();
+      };
+
+      var assertAskCreated = function(err, res) {
+        expect(res.body.id).to.be.a('number');
+        getAndAssert('/asks', assertAskExists);
+      };
+
+      postAndAssert('/asks',
+                    {action: 'ask', tag: hashTag, price: 33.92, units: 1},
+                    assertAskCreated);
+    });
+  });
+});
