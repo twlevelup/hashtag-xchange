@@ -32,11 +32,11 @@ describe("bids", function () {
         });
       });
     });
-    describe("when bids exists", function () {
+    describe("when bids exist", function () {
       it("should not return an empty list", function(done) {
         request(server)
         .post('/bids')
-        .send({action: 'bid', tag: "yolo", price: 10.00, units: 1}).end(function (err,res) {
+        .send({"action": "bid", "tag": "yolo", "price": 10.00, "units": 1}).end(function (err,res) {
           getAndAssert('/bids', function(err, res) {
             expect(res.body).to.not.be.empty;
             done();
@@ -50,7 +50,7 @@ describe("bids", function () {
     it("should produce an id", function(done) {
       request(server)
       .post('/bids')
-      .send({action: 'bid', tag: "yolo", price: 10.00, units: 1})
+      .send({"action": "bid", "tag": "yolo", "price": 10.00, "units": 1})
       .end(function(err, res) {
         expect(res.body.id).to.be.a('number');
         done();
@@ -61,7 +61,7 @@ describe("bids", function () {
       var hashTag = "test-" + Date.now();
 
       var assertBidExists = function(err, res) {
-        var bid = _.findWhere(res.body, {tag: hashTag});
+        var bid = _.findWhere(res.body, {tag: 'hashTag'});
 
         expect(bid.id).to.be.a('number');
         expect(bid.action).to.equal('bid');
@@ -71,12 +71,13 @@ describe("bids", function () {
       };
 
       var assertBidCreated = function(err, res) {
-        expect(res.body.id).to.be.a('number');
+        var bid = res.body;
+        expect(bid.id).to.be.a('number');
         getAndAssert('/bids', assertBidExists);
       };
 
       postAndAssert('/bids',
-                    {action: 'bid', tag: hashTag, price: 10.01, units: 1},
+                    {"action": "bid", "tag": "hashTag", "price": 10.01, "units": 1},
                     assertBidCreated);
     });
   });
@@ -87,7 +88,7 @@ describe("asks", function () {
     it("should produce an id", function(done) {
       request(server)
       .post('/asks')
-      .send({action: 'ask', tag: "yolo", price: 12.23, units: 1})
+      .send({"action": "ask", "tag": "yolo", "price": 12.23, "units": 1})
       .end(function(err, res) {
         expect(res.body.id).to.be.a('number');
         done();
@@ -98,7 +99,7 @@ describe("asks", function () {
       var hashTag = "test-" + Date.now();
 
       var assertAskExists = function(err, res) {
-        var bid = _.findWhere(res.body, {tag: hashTag});
+        var bid = _.findWhere(res.body, {tag: 'hashTag'});
 
         expect(bid.id).to.be.a('number');
         expect(bid.action).to.equal('ask');
@@ -113,7 +114,7 @@ describe("asks", function () {
       };
 
       postAndAssert('/asks',
-                    {action: 'ask', tag: hashTag, price: 33.92, units: 1},
+                    {"action": "ask", "tag": "hashTag", "price": 33.92, "units": 1},
                     assertAskCreated);
     });
   });

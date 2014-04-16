@@ -15,7 +15,7 @@ describe("routing behaviour", function() {
     it("should match creation", function(done) {
       request(server)
         .post('/bids')
-        .send('{tag: "yolo", price: "10.00", units: 1}')
+        .send({"tag": "yolo", "price": 10.00, "units": 1})
         .expect('Content-Type', /json/)
         .expect(201, done);
     });
@@ -32,7 +32,7 @@ describe("routing behaviour", function() {
     it("should match creation", function(done) {
       request(server)
         .post('/asks')
-        .send('{tag: "yolo", price: "10.00", units: 1}')
+        .send({"tag": "yolo", "price": 10.00, "units": 1})
         .expect('Content-Type', /json/)
         .expect(201, done);
     });
