@@ -20,7 +20,32 @@ var getAndAssert = function(path, assertionCallback) {
   get(path).end(assertionCallback);
 };
 
+// TODO: reset server state between tests
 describe("bids", function () {
+
+  describe("when listing bids", function() {
+    describe("when no bids exists", function() {
+      it("should return an empty list", function(done) {
+        getAndAssert('/bids', function(err, res) {
+          expect(res.body).to.be.empty;
+          done();
+        });
+      });
+    });
+    describe("when bids exists", function () {
+      it("should not return an empty list", function(done) {
+        request(server)
+        .post('/bids')
+        .send({action: 'bid', tag: "yolo", price: 10.00, units: 1}).end(function (err,res) {
+          getAndAssert('/bids', function(err, res) {
+            expect(res.body).to.not.be.empty;
+            done();
+          });
+        });
+      });
+    });
+  });
+
   describe("when creating bids", function() {
     it("should produce an id", function(done) {
       request(server)
@@ -54,9 +79,6 @@ describe("bids", function () {
                     {action: 'bid', tag: hashTag, price: 10.01, units: 1},
                     assertBidCreated);
     });
-  });
-
-  describe("when listing bids", function() {
   });
 });
 
